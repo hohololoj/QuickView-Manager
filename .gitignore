@@ -1,0 +1,7 @@
+#folders
+node_modules
+cjs/node_modules
+dist
+
+#files
+info

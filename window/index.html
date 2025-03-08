@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self'" />
+    <link rel="icon" href="./logo.svg" type="image/x-icon">
+    <link rel="stylesheet" href="./index.css">
+    <title>Quick View Manager v1.0</title>
+</head>
+
+<body>
+    <div class="block">
+        <header>
+            <h2>QuickView Manager</h2>
+            <button class="button-close"><img src="./icons/icon-close.svg" alt="close"></button>
+        </header>
+        <div class="block__body-container">
+            <div class="body-container__menu">
+                <div class="body-container__menu__item" group="shortcut">Настройки активации</div>
+                <div class="body-container__menu__item" group="windows">Настройки окон</div>
+                <div class="body-container__menu__item" group="boot">Настройки загрузки</div>
+            </div>
+            <div class="body-container__window-container"> <!-- Контейнер для окон -->
+
+                <!-- окно настройки клавиш -->
+                <div class="body-container__window body-container__window-shortcut">
+                    <div class="window__item">
+                        <div class="body-container__shortcut-setting__item" id="setting-shortcut"> <!-- item настройки -->
+                            <div class="shortcut-setting__item__header" setting="shortcut"> <!-- Заголовок настройки -->
+                                <img src="./icons/icon-marked.svg" class="shortcut-setting__item__icon-marked">
+                                <img src="./icons/icon-unmarked.svg" class="shortcut-setting__item__icon-unmarked">
+                                <p class="shortcut-setting__item__text">Сочетание клавиш</p>
+                            </div>
+                            <div class="shortcut-setting__item__body" id="setting-shortcut-interface">
+                                Нажмите для ввода сочетания
+                            </div>
+                        </div>
+                    </div>
+                    <div class="window__item">
+                        <div class="body-container__shortcut-setting__item" id="setting-doublePress"> <!-- item настройки -->
+                            <div class="shortcut-setting__item__header" setting="doublePress"> <!-- Заголовок настройки -->
+                                <img src="./icons/icon-marked.svg" class="shortcut-setting__item__icon-marked">
+                                <img src="./icons/icon-unmarked.svg" class="shortcut-setting__item__icon-unmarked">
+                                <p class="shortcut-setting__item__text">Двойное нажатие</p>
+                            </div>
+                            <div class="shortcut-setting__item__body" id="setting-doublePress-interface">
+                                Нажмите для ввода клавиши
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- окно настройки окон -->
+                <div class="body-container__window body-container__window-windows">
+                    <div class="window__item">
+                        <div class="body-container__window-selector" id="input-window-1">
+                            <p class="window-selector__text">Выбрать окно #1</p>
+                        </div>
+                    </div>
+                    <div class="window__item">
+                        <div class="body-container__window-selector" id="input-window-2">
+                            <p class="window-selector__text">Выбрать окно #2</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- окно настройки автозагрузки -->
+                <div class="body-container__window body-container__window_active body-container__window-boot">
+                    <div class="window__item">
+                        <div class="body-container__boot-setting__container" id="setting-boot-interface">
+                            <img src="./icons/icon-marked.svg" class="boot-setting__icon-marked">
+                            <img src="./icons/icon-unmarked.svg" class="boot-setting__icon-unmarked">
+                            <p class="boot-setting__text">Автозагрузка</p>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-input-window">
+        <div class="modal-input-window__searchbar-container">
+            <input type="text" id="input-window-process" placeholder="Поиск по процессам">
+        </div>
+        <div class="modal-input-window__process-list"></div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+
+</html>

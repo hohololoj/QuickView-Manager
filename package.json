@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "electron": "^35.0.0",
+    "node-global-key-listener": "^0.3.0"
+  },
+  "name": "quick-view-manager",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "dev": "electron app.js --inspect",
+    "build": "electron-builder"
+  },
+  "build": {
+    "win": {
+      "icon": "buildResources/icon.ico"
+    }
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
