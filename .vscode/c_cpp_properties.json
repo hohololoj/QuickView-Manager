@@ -2,10 +2,6 @@
     "configurations": [
         {
             "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**",
-                "C:\\Users\\hohol\\vcpkg\\installed\\x64-windows\\include"
-            ],
             "defines": [
                 "_DEBUG",
                 "UNICODE",

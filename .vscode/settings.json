@@ -1,6 +1,3 @@
 {
 	"cSpell.language": "en,ru",
-	"files.associations": {
-		"libwebsockets.h": "c"
-	}
 }

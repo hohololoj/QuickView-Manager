@@ -36,7 +36,7 @@ class UI{
     initWindowsState(){
         state.windows = {0: {title: null, hwnd: 0}, 1: {title: null, hwnd: 0}};
         effect('windows.0', (newValue) => {
-            uiInterface.windowSelector1.innerText = newValue.title !== null ? newValue.title : 'Окно #1';
+            uiInterface.windowSelector1.innerText = newValue.title !== null ? newValue.title : 'очень длинное название окна приложения или процесса прям очень длинное';
         })
         effect('windows.1', (newValue) => {
             uiInterface.windowSelector2.innerText = newValue.title !== null ? newValue.title : 'Окно #2';

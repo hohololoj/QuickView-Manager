@@ -13,12 +13,38 @@ class App{
         await hookInterface.killHook();
         Neutralino.app.exit(1);
     }
+    async hideInTray(){
+        await Neutralino.window.hide();
+    }
+    async setupTray(){
+        await Neutralino.os.setTray({
+            icon: '/resources/icons/icon.ico',
+            menuItems: [
+                {id: 'SHOW', text: 'Показать'},
+                {id: 'QUIT', text: 'Закрыть'}
+            ]
+        })
+        Neutralino.events.on('trayMenuItemClicked', (event) => {
+            switch(event.detail.id) {
+                case 'SHOW':{
+                    Neutralino.window.show();
+                    Neutralino.window.focus();
+                    break;
+                }
+                case 'QUIT':{
+                    app.closeApp();
+                    break;
+                }
+            }
+        })
+    }
     async initDefaultEvents(){
         Neutralino.init();
-        Neutralino.events.on('windowClose', this.closeApp.bind(this));
+        Neutralino.events.on('windowClose', app.hideInTray);
         await settingsController.initSettings();
         await hookInterface.spawnHook();
         uiInterface.initDefault();
+        await app.setupTray();
         return Neutralino.events.on('ready', () => {});
     }
     checkHotkey(){

@@ -3,7 +3,7 @@
 
 #define DP 0 // double press
 #define HK 1 // hotkey
-#define DP_LATENCY 500 // задержка между нажатиями для прослушивания двойного нажатия
+#define DP_LATENCY 500 // задержка между нажатиями двойного нажатия
 
 typedef struct {
 	HWND hwnd;
@@ -12,6 +12,7 @@ typedef struct {
 
 // mode - режим слушания. 0 - двойное нажатие, 1 - сочетание клавиш
 // lDoubleKey - код кнопки для которой слушать двойное нажатие
+// lHotkey - код кнопок хоткея
 int mode = DP;
 int lDoubleKey = 255;
 int lHotkey[3] = {255,255,255};
@@ -148,7 +149,6 @@ void escjson(const char* str) {
 }
 void parseWindowsList(){
     printf("wndwslst:[");
-    
     for(int i = 0; i < windowCounter; i++){
         if(i > 0) printf(",");
         
@@ -159,7 +159,6 @@ void parseWindowsList(){
         escjson(windows[i].title);
         printf("\"}");
     }
-    
     printf("]");
     fflush(stdout);
 }
@@ -186,16 +185,6 @@ void parseCommand(void){
 		HWND hwnd2 = (HWND)strtoull(hwnd2_str, NULL, 10);
 		currentWindow[0] = hwnd1;
 		currentWindow[1] = hwnd2;
-
-		printf("Windows parsed:\n");
-		printf("  hwnd1_str: %s\n", hwnd1_str);
-		printf("  hwnd2_str: %s\n", hwnd2_str);
-		printf("  currentWindow[0]: %p\n", currentWindow[0]);
-		printf("  currentWindow[1]: %p\n", currentWindow[1]);
-		printf("  hwnd1: %llu\n", (unsigned long long)hwnd1);
-		printf("  hwnd2: %llu\n", (unsigned long long)hwnd2);
-		fflush(stdout);
-
 	}
 	else if(strncmp(buffer, "setSettings:", 12) == 0){
 		char* settings = buffer + 12;
@@ -210,12 +199,6 @@ void parseCommand(void){
 		lHotkey[1] = strtoul(hotkey_key2, NULL, 10);
 		lHotkey[2] = strtoul(hotkey_key3, NULL, 10);
 		mode = strtoul(mode_str, NULL, 10);
-
-		printf("Settings parsed:\n");
-    	printf("  DoubleKey: %lu\n", lDoubleKey);
-    	printf("  Hotkey: [%lu, %lu, %lu]\n", lHotkey[0], lHotkey[1], lHotkey[2]);
-    	printf("  Mode: %lu\n", mode);
-    	fflush(stdout);
 	}
 }
 
