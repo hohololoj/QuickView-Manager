@@ -6,6 +6,7 @@ class Settings{
 	async loadSysDirs(){
         try{
             this.CONFIG_DIR = await Neutralino.os.getPath('config');
+            window.CONFIG_DIR = this.CONFIG_DIR;
         }
         catch(err){
             app.crash('Что-то пошло не так', `Не получается считать системную директорию CONFIG: ${err}`, 'OK', 'ERROR');

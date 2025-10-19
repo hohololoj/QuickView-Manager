@@ -10,13 +10,20 @@ class Hook{
         if(stdout.startsWith('wndwslst:')){
             const rawWindowsList = stdout.replace(/^wndwslst:/, '');
             const windowsList = JSON.parse(rawWindowsList);
-            console.log(windowsList);
             uiInterface.showWindowsList(windowsList)
         }
-        else{console.log(stdout);}
     }
 	async spawnHook(){
-        this.HOOK_ID = await Neutralino.os.spawnProcess(NL_CWD + '/resources/native/qvm.exe');
+        console.log(`${NL_PATH}/qvm.exe`);
+        try{
+            await Neutralino.filesystem.getStats(`${NL_PATH}/qvm.exe`);
+        }
+        catch(err){
+            if(err.code === "NE_FS_NOPATHE"){
+                await Neutralino.resources.extractFile('/resources/native/qvm.exe', `${NL_PATH}/qvm.exe`);
+            }
+        }
+        this.HOOK_ID = await Neutralino.os.spawnProcess(`${NL_PATH}/qvm.exe`);
         Neutralino.events.on('spawnedProcess', function(evt){
             const std = evt.detail.data;
             this.parseSTDData(std);

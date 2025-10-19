@@ -40,6 +40,7 @@ class App{
     }
     async initDefaultEvents(){
         Neutralino.init();
+        Neutralino.window.setIcon('resources/icons/icon.ico');
         Neutralino.events.on('windowClose', app.hideInTray);
         await settingsController.initSettings();
         await hookInterface.spawnHook();
